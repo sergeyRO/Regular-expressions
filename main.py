@@ -17,7 +17,9 @@ for item in contacts_list:
 contacts_list = list()
 for items in contacts_list_modify:
     pattern = r'^([А-ЯЁа-яё]*)(\s*)(\,?)([А-ЯЁа-яё]*)(\s*)(\,?)([А-ЯЁа-яё]*)(\,?)(\,?)(\,?)'
-    contacts_list.append((re.sub(pattern, r'\1\3\10\4\6\9\7\8', ','.join(items))).split(','))
+    person = (re.sub(pattern, r'\1\3\10\4\6\9\7\8', ','.join(items))).split(',')
+    del person[7:]
+    contacts_list.append(person)
 
 for a in contacts_list:
     for b in contacts_list:
@@ -35,6 +37,7 @@ for a in contacts_list:
                     a[5] = b[5]
                 if a[6] == '':
                     a[6] = b[6]
+
 l=list()
 for i in contacts_list:
     if i not in l:
